@@ -7,7 +7,16 @@ import humidityicon from  '../assets/humidity.png'
 import rainyicon from  '../assets/rainy.jpg'
 import snowicon from  '../assets/snow.jpg'
 import windyicon from  '../assets/windy.png'
+import pressureicon from '../assets/pressure.jpg'
 import React, { useState, useEffect } from 'react'
+import feelsLike from '../assets/feelsLike.jpg'
+import minTemp from '../assets/minTemp.jpg'
+import maxTemp from '../assets/maxTemp.jpg'
+import clouds from '../assets/clouds.jpg'
+import visibility from '../assets/visibility.png'
+import rain from '../assets/rain.jpg'
+import sunrise from '../assets/sunrise.jpg'
+import sunset from '../assets/sunset.jpg'
 
 const Weather = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -50,14 +59,23 @@ const Weather = () => {
         windSpeed: data.wind.speed,
         temperature: Math.floor(data.main.temp),
         location: data.name,
-        icon: icon
+        icon: icon,
+        feelsLike: Math.floor(data.main.feels_like),
+        pressure: data.main.pressure,
+        minTemp: data.main.temp_min,
+        maxTemp: data.main.temp_max,
+        clouds: data.clouds.all,
+        visibility: data.visibility,
+        sunrise: data.sys.sunrise,
+        sunset: data.sys.sunset,
+        rain: data.rain ? data.rain['1h'] : 0,
+        snow: data.snow ? data.snow['1h'] : 0,
       });
     } catch (error) {
-      setWeatherData(false);
-      console.error("Error fetching weather data");
+     setWeatherData(false);
+     console.error("Error fetching weather data", error);
     }
   }
-
 //   useEffect(() => {
 //     search("Ahmedabad");
 //   }, []);
@@ -71,6 +89,16 @@ const Weather = () => {
       search(inputValue);
     }
   };
+
+  let sunriseTime = '';
+  if (weatherData && weatherData.sunrise) {
+    sunriseTime = new Date(weatherData.sunrise * 1000).toLocaleTimeString();
+  }
+
+  let sunsetTime = '';
+  if (weatherData && weatherData.sunset) {
+    sunsetTime = new Date(weatherData.sunset * 1000).toLocaleTimeString();
+  }
 
   return (
     <div className='weather'>
@@ -90,6 +118,7 @@ const Weather = () => {
           <p className='temperature'>{weatherData.temperature}°C</p>
           <p className='location'>{weatherData.location}</p>
           <div className="weather-data">
+            <div className="row">
             <div className="col">
               <img src={humidityicon} alt="" />
               <div>
@@ -104,7 +133,64 @@ const Weather = () => {
                 <span>Wind Speed</span>
               </div>
             </div>
+              <div className="col">
+              <img src={maxTemp} alt="" />
+              <div>
+                <p>{weatherData.maxTemp} °C</p>
+                <span>Max Temperarture</span>
+              </div>
+            </div>
+         </div>
+         <div className="row">
+            <div className="col">
+                <img src={feelsLike} alt="" />
+            <div>
+                <p>{weatherData.feelsLike} °C</p>
+                <span>Feels Like</span>
+               </div>
+            </div>
+            <div className="col">
+                <img src={pressureicon} alt="" />
+                <div> 
+                    <p>{weatherData.pressure} hPa </p>
+                    <span> Pressure </span>
+                </div>
+            </div>
+            <br>
+            </br>
+              <div className="col">
+                <img src={minTemp} alt="" />
+                <div> 
+                    <p>{weatherData.minTemp}°C </p>
+                    <span> Min Temperature </span>
+                </div>
+            </div>
           </div>
+          <div className= "row">
+            <div className="col">
+                <img src={rain} alt="" />
+                <div>
+                    <p>{weatherData.rain}mm/h</p>
+                    <span>Rain</span>
+               </div>
+            </div>
+             <div className="col">
+                <img src={sunrise} alt="" />
+                <div>
+                    <p>{sunriseTime}am</p>
+                    <span>Sunrise</span>
+               </div>
+            </div>
+            <div className="col">
+                <img src={sunset} alt=""/>
+                <div>
+                    <p>{sunsetTime}pm</p>
+                    <span>Sunset</span>
+                </div>
+            </div>
+
+          </div>
+        </div>
         </>
       )}
     </div>
