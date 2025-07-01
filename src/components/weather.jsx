@@ -53,14 +53,14 @@ const Weather = () => {
         icon: icon
       });
     } catch (error) {
-      setWeatherData(null);
-      alert("Error fetching weather data");
+      setWeatherData(false);
+      console.error("Error fetching weather data");
     }
   }
 
-  useEffect(() => {
-    search("Ahmedabad");
-  }, []);
+//   useEffect(() => {
+//     search("Ahmedabad");
+//   }, []);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
