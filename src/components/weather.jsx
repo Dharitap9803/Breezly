@@ -10,7 +10,7 @@ import windyicon from  '../assets/windy.png'
 import pressureicon from '../assets/pressure.jpg'
 import React, { useState } from 'react'
 import feelsLike from '../assets/feelsLike.jpg'
-import minTemp from '../assets/mintemp.jpg' //changed the file 
+import minTemp from '../assets/mintemp.jpg' //changed the file permanently 
 import maxTemp from '../assets/maxTemp.jpg'
 import rain from '../assets/rain.jpg'
 import sunrise from '../assets/sunrise.jpg'
