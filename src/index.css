@@ -11,8 +11,9 @@
 .app{
   min-height: 100vh;
   display: grid;
-  background: #e2d4ff;
-
+  background: transparent;
 }
+
+
 
 

@@ -1,11 +1,21 @@
+body {
+    min-height: 100vh;
+    display: grid;
+    /* background: url('/assets/back.jpg') center center/cover no-repeat fixed; */
+}
+
 .weather{
     place-self: center;
     padding: 40px;
-    border-radius: 10px;
-    background-image: linear-gradient(45deg, #2f4680, #2f4680, #500ae4);
-    display: flex;
+    margin-top: -20px;
+    border-radius: 18px;
+    background-image: linear-gradient(135deg, rgba(0, 80, 160, 0.85), rgba(58, 136, 239, 0.85), rgba(0, 40, 80, 0.85));
+    border: 6px solid rgba(255,255,255,0.45);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    display:  flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
 }
 .search-bar img {
     width: 30px;
@@ -16,24 +26,63 @@
 .search-bar{
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 100%;
     gap: 12px;
 }
 
+.search-input-container{
+    display: flex;
+    align-items: center;
+    background: #ebfffc;
+    border-radius: 10px;
+    padding: 0 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.0.5);
+}
+
+.search-input-container input {
+    border: none;
+    outline: none;
+    background: transparent;
+    height: 45px;
+    font-size: 20px;
+    padding-left: 20px;
+    border-radius: 40px 0 0 40px;
+    color: #626262;
+}
+
+.search-divider{
+    width: 1px;
+    height: 30px;
+    background: #b0b0b0;
+    margin: 0 10px;
+}
+
+.search-input-container img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ebfffc;
+    padding: 5px;
+    cursor: pointer;
+}
+
+
 .search-bar input{
-    height: 65px;         
+    height: 45px;         
     border: none;
     outline: none;
     border-radius: 40px;
     padding-left: 30px;
     color: #626262;
     background: #ebfffc;
-    font-size: 24px;     
+    font-size: 20px;     
 }
 
 .search-bar img{
-    width: 65px;          
-    height: 65px;        
-    padding: 18px;        
+    width: 50px;          
+    height: 50px;        
+    padding: 15px;        
     border-radius: 50%;
     background: #ebfffc;
     cursor: pointer;
@@ -46,18 +95,18 @@
 }
 .temperature{
     color: #fff;
-    font-size: 80px;
+    font-size: 20px;
     line-height: 1;
 }
 .location{
     color: #fff;
-    font-size: 40px;
+    font-size: 20px;
 }
 
 .weather-data{
     width: 100%;
     margin-top: 40px;
-    color: #fff;
+    color: #000000;
     display: flex;
     justify-content: space-between;
     display: flex;
@@ -66,21 +115,21 @@
 }
 
 .col img{
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     object-fit: contain;
 }
 .col span{
-    font-size: 15px;
+    font-size: 10px;
 }
 .weather-data .col span{
     display: block;
-    font-size: 16px;
+    font-size: 12px;
 }
 .weather-data .col img{
-    width: 40px;
-    height: 45px;
-    margin-top: 10px;
+    width: 30px;
+    height: 40px;
+    margin-top: 13px;
 }
 .weather-data .left-col{
     display: flex;
@@ -95,8 +144,58 @@
 }
 
 .weather-data .col{
+    min-width: 150px;
     display: flex;
     align-items: flex-start;
     gap: 20px;
     font-size: 22px;
+}
+
+.forecast-items-container {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 12px;
+    max-width: 500px; /* Adjust so 5 cards fit, e.g. 5*90px + gaps */
+    margin: 0 auto;
+    scrollbar-width: thin;
+}
+
+.forecast-items-container::-webkit-scrollbar{     
+    height: 8px; 
+}  
+
+.forecast-items-container::-webkit-scrollbar-track{     
+    background: rgba(0, 0, 0, 0.1);     
+    border-radius: 99px; 
+}  
+
+.forecast-items-container::-webkit-scrollbar-thumb{     
+    background: rgba(0, 0, 0, 0.15);     
+    border-radius: 99px; 
+}  
+
+.forecast-item:hover{     
+    background: rgb(255, 255, 255, 0.15);  
+} 
+
+.forecast-item {
+    min-width: 90px;  /* Adjust to your card width */
+    max-width: 90px;
+    background: rgb(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 15px;
+    align-items: center;
+    border-radius: 12px;
+    transition: 0.3s background;
+    flex-shrink: 0;
+}
+
+.forecast-item-img{     
+    width: 35px;     
+    height: 35px; 
 }
